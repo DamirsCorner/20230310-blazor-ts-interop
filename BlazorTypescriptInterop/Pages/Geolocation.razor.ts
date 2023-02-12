@@ -1,10 +1,10 @@
-﻿export async function getCurrentPosition(options) {
-    let position = await new Promise((resolve, reject) => {
+﻿export async function getCurrentPosition(options?: PositionOptions): Promise<GeolocationPosition> {
+    let position = await new Promise((resolve: PositionCallback, reject: PositionErrorCallback) => {
         navigator.geolocation.getCurrentPosition(resolve, reject, options);
     });
     console.log(position);
     console.log(JSON.stringify(position));
-    let mappedPosition = {
+    let mappedPosition: GeolocationPosition = {
         coords: {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
